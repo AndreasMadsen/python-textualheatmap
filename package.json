@@ -1,0 +1,19 @@
+{
+  "name": "textualheatmap",
+  "version": "1.0.0",
+  "description": "Create interactive textual heat maps for Jupiter notebooks",
+  "main": "index.js",
+  "private": true,
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "publish": "rm -rf dist && python setup.py sdist && twine upload dist/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreasMadsen/python-textualheatmap.git"
+  },
+  "author": "Andreas Madsen",
+  "license": "MIT"
+}
