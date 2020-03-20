@@ -9,7 +9,7 @@ that works well with PyTorch and Tensorflow and a keras wrapper
 `textualheatmap` works with python 3.6 or newer and is distributed under the
 MIT license.
 
-![Gif of textualheatmap](gifs/readme_header.gif)
+![Gif of textualheatmap](gifs/show_meta.gif)
 
 ## Install
 
