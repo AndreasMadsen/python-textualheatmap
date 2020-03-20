@@ -19,7 +19,7 @@ pip install -U textualheatmap
 
 ## API
 
-* [`textualheatmap.TextualHeatmap`](lrcurve/textual_heatmap.py)
+* [`textualheatmap.TextualHeatmap`](textualheatmap/textual_heatmap.py)
 
 ## Example
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AndreasMadsen/python-textualheatmap/blob/master/notebooks/general_example.ipynb)
