@@ -1,0 +1,102 @@
+.textual-heatmap .facet {
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  grid-template-rows: 40px auto;
+  grid-template-areas:
+    "meta-content ."
+    "token-content facet-title";
+  margin-bottom: 0.5em;
+}
+
+.textual-heatmap .facet.hide-meta-content {
+  grid-template-rows: auto;
+  grid-template-areas:
+    "token-content facet-title";
+}
+
+.textual-heatmap .facet .token-content {
+  grid-area: token-content;
+
+  font-family: monospace;
+  padding: 0.5em;
+  box-sizing: border-box;
+  background: #365d8d;
+  color: white;
+  line-height: 1.4em;
+  border-radius: 0 0 0 5px;
+}
+
+.textual-heatmap .facet.hide-meta-content .token-content {
+    border-radius: 5px 0 0 5px;
+}
+
+.textual-heatmap .facet .token-content span {
+  border-bottom: 0.2em solid transparent;
+  white-space: pre-wrap;
+}
+
+.textual-heatmap .facet .token-content span.selected {
+  border-bottom-color: white;
+}
+
+.textual-heatmap .facet .meta-content {
+  grid-area: meta-content;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
+  grid-column-gap: 2px;
+  align-items: center;
+}
+
+.textual-heatmap .facet.hide-meta-content .meta-content {
+    display: none;
+}
+
+.textual-heatmap .facet .meta-content .meta-content-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+  height: 39px;
+  background: #F3F3F3;
+  border: 1px solid #E0E0E0;
+  border-bottom: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.textual-heatmap .facet .meta-content .meta-content-item:first-of-type {
+    border-radius: 5px 0 0 0;
+}
+
+.textual-heatmap .facet .meta-content .meta-content-item:last-of-type {
+    border-radius: 0 5px 0 0;
+}
+
+.textual-heatmap .facet .meta-content .meta-content-item:first-of-type:last-of-type {
+    border-radius: 5px 5px 0 0;
+}
+
+.textual-heatmap .facet .facet-title {
+  grid-area: facet-title;
+
+  display: flex;
+  max-width: 60px;
+  background: #EEEEEE;
+  justify-content: center;
+  color: #555555;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid #E0E0E0;
+  border-left: none;
+}
+
+.textual-heatmap .facet .facet-title span {
+  align-self: center;
+  display: inline-block;
+  transform-origin: center center;
+  line-height: 1em;
+  text-align: center;
+}
+
+.textual-heatmap .facet.rotate-facet-title .facet-title span {
+  transform: translate(0, 0) rotate(90deg);
+}

@@ -1,0 +1,4 @@
+include lrcurve/web_assets/d3.bundle.js
+include lrcurve/web_assets/d3.js
+include lrcurve/web_assets/learning_curve.js
+include lrcurve/web_assets/learning_curve.css
