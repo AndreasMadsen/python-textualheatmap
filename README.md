@@ -27,42 +27,67 @@ pip install -U textualheatmap
 ```python
 from textualheatmap import TextualHeatmap
 
+data = [[
+    # GRU data
+    {"token":" ",
+     "meta":["the","one","of"],
+     "heat":[1,0,0,0,0,0,0,0,0]},
+    {"token":"c",
+     "meta":["can","called","century"],
+     "heat":[1,0.22,0,0,0,0,0,0,0]},
+    {"token":"o",
+     "meta":["country","could","company"],
+     "heat":[0.57,0.059,1,0,0,0,0,0,0]},
+    {"token":"n",
+     "meta":["control","considered","construction"],
+     "heat":[1,0.20,0.11,0.84,0,0,0,0,0]},
+    {"token":"t",
+     "meta":["control","continued","continental"],
+     "heat":[0.27,0.17,0.052,0.44,1,0,0,0,0]},
+    {"token":"e",
+     "meta":["context","content","contested"],
+     "heat":[0.17,0.039,0.034,0.22,1,0.53,0,0,0]},
+    {"token":"x",
+     "meta":["context","contexts","contemporary"],
+     "heat":[0.17,0.0044,0.021,0.17,1,0.90,0.48,0,0]},
+    {"token":"t",
+     "meta":["context","contexts","contentious"],
+     "heat":[0.14,0.011,0.034,0.14,0.68,1,0.80,0.86,0]},
+    {"token":" ",
+     "meta":["of","and","the"],
+     "heat":[0.014,0.0063,0.0044,0.011,0.034,0.10,0.32,0.28,1]},
+    # ...
+],[
+    # LSTM data
+    # ...
+]]
+
 heatmap = TextualHeatmap(
+    width = 600,
     show_meta = True,
-    facet_titles = ['LSTM', 'GRU']
+    facet_titles = ['GRU', 'LSTM']
 )
-heatmap.set_data([
-    [{
-        "token": 'a',
-        "meta": ['and', 'africa', 'america'],
-        "heat": [1, 0, 0]
-    }, {
-        "token": 'n',
-        "meta": ['and', 'anecdote', 'antelope'],
-        "heat": [0.3, 0.7, 0]
-    }, {
-        "token": 'd',
-        "meta": ['and', 'andante', 'andosol'],
-        "heat": [0.2, 0.3, 0.5]
-    }],
-    [{
-        "token": 'a',
-        "meta": ['and', 'africa', 'america'],
-        "heat": [1, 0, 0]
-    }, {
-        "token": 'n',
-        "meta": ['and', 'anecdote', 'antelope'],
-        "heat": [0.1, 0.9, 0]
-    }, {
-        "token": 'd',
-        "meta": ['and', 'andante', 'andosol'],
-        "heat": [0.1, 0.1, 0.8]
-    }]
-])
-heatmap.highlight(1)
+# Set data and render plot, this can be called again to replace
+# the data.
+heatmap.set_data(data)
+# Focus on the token with the given index. Especially useful when
+# `interactive=False` is used in `TextualHeatmap`.
+heatmap.highlight(159)
 ```
 
-![Gif of learning-curve for keras example](gifs/general_example.gif)
+![Gif of learning-curve for keras example](gifs/show_meta.gif)
+
+```python
+heatmap = TextualHeatmap(
+    show_meta = False,
+    facet_titles = ['LSTM', 'GRU'],
+    rotate_facet_titles = True
+)
+heatmap.set_data(data)
+heatmap.highlight(159)
+```
+
+![Gif of learning-curve for keras example](gifs/no_meta_and_rotated.gif)
 
 ## Citation
 
