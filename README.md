@@ -2,9 +2,11 @@
 
 **Create interactive textual heatmaps for Jupiter notebooks.**
 
-There is a framework agnostic interface `lrcurve.PlotLearningCurve`
-that works well with PyTorch and Tensorflow and a keras wrapper
-`lrcurve.KerasLearningCurve` that uses the keras callback interface.
+I originally published this visualization method in my distill paper
+https://distill.pub/2019/memorization-in-rnns/. In this context, it is used
+as a saliency map for showing which parts of a sentence are used to predict
+the next word. However, the visualization method is more general-purpose than
+that and can be used for any kind of textual heatmap purposes.
 
 `textualheatmap` works with python 3.6 or newer and is distributed under the
 MIT license.
