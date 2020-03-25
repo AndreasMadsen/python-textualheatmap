@@ -5,7 +5,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.md')) as f:
     long_description = f.read()
 
 setup(name='textualheatmap',
-      version='1.0.1',
+      version='1.0.2',
       description='Create interactive textual heat maps for Jupiter notebooks',
       long_description=long_description,
       long_description_content_type='text/markdown',
