@@ -100,7 +100,6 @@
                 const tokenNode = document.createElement('span');
                 const heatIndex = this.heatIndexToNodeElement.length;
                 tokenNode.appendChild(document.createTextNode(data[i].token));
-                console.log(heatIndex);
                 if (this.settings.interactive && !data[i].format) {
                     tokenNode.addEventListener('mouseover', () => this.onmouseover(heatIndex), false);
                     this.heatIndexToNodeElement.push(tokenNode)
@@ -117,8 +116,6 @@
         highlight(index) {
             this.highlightIndex = index;
 
-            console.log(index);
-            console.log(this.heatIndexToNodeElement)
             for (let i = 0; i < this.heatIndexToNodeElement.length; i++) {
                 this.heatIndexToNodeElement[i].style.backgroundColor = viridisSubset(this.nonFormatData[index].heat[i]);
                 this.heatIndexToNodeElement[i].classList.toggle('selected', i === index);
