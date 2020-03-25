@@ -23,7 +23,10 @@ pip install -U textualheatmap
 
 * [`textualheatmap.TextualHeatmap`](textualheatmap/textual_heatmap.py)
 
-## Example
+## Examples
+
+### Example of sequential-charecter model with metadata visible
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AndreasMadsen/python-textualheatmap/blob/master/notebooks/general_example.ipynb)
 
 ```python
@@ -79,6 +82,10 @@ heatmap.highlight(159)
 
 ![Gif of learning-curve for keras example](gifs/show_meta.gif)
 
+### Example of sequential-charecter model without metadata
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AndreasMadsen/python-textualheatmap/blob/master/notebooks/general_example.ipynb)
+
 ```python
 heatmap = TextualHeatmap(
     show_meta = False,
@@ -90,6 +97,46 @@ heatmap.highlight(159)
 ```
 
 ![Gif of learning-curve for keras example](gifs/no_meta_and_rotated.gif)
+
+### Example of non-sequential-word model
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AndreasMadsen/python-textualheatmap/blob/master/notebooks/bert_hardcoded_example.ipynb)
+
+`format = True` can be set in the `data` object to inducate tokens that are
+not directly used by the model. This is useful if word or sub-word tokenization
+is used.
+
+
+```python
+data = [[
+{'token': '[CLR]',
+ 'meta': ['', '', ''],
+ 'heat': [1, 0, 0, 0, 0, ...]},
+{'token': ' ',
+ 'format': True},
+{'token': 'context',
+ 'meta': ['today', 'and', 'thus'],
+ 'heat': [0.13, 0.40, 0.23, 1.0, 0.56, ...]},
+{'token': ' ',
+ 'format': True},
+{'token': 'the',
+ 'meta': ['##ual', 'the', '##ually'],
+ 'heat': [0.11, 1.0, 0.34, 0.58, 0.59, ...]},
+{'token': ' ',
+ 'format': True},
+{'token': 'formal',
+ 'meta': ['formal', 'academic', 'systematic'],
+ 'heat': [0.13, 0.74, 0.26, 0.35, 1.0, ...]},
+{'token': ' ',
+ 'format': True},
+{'token': 'study',
+ 'meta': ['##ization', 'study', '##ity'],
+ 'heat': [0.09, 0.27, 0.19, 1.0, 0.26, ...]}
+]]
+
+heatmap = TextualHeatmap(facet_titles = ['BERT'], show_meta=True)
+heatmap.set_data(data)
+```
 
 ## Citation
 

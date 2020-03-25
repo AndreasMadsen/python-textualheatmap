@@ -129,7 +129,23 @@ class TextualHeatmap:
         `data` is a list of `FacetData`. Each `FacetData` is a
         list of `TokenData`.
 
-            TokenData = {"token": str, "meta": List[str], "heat": List[float]}
+            TokenData = {"token": str, "meta": List[str], "heat": List[float], "format": bool}
+
+        * The `token` is what is displayed in the main text window.
+        * The `meta` is used if `show_meta` is set to `True` in `TextualHeatmap`. This is
+            displayed above the main text window.
+        * The `heat` is is a ratio from 0 to 1, that will map to a color. 0 meaning there
+          is no heat, and 1 is full heat. The `heat` values does not have to sum to 1.
+        * The `format` is used to indicate tokens that are not seen by the model. For example
+          space charecters if word or sub-word tokenization is used. In this case,
+        `meta` and `heat` have no meaning.
+
+        Examples:
+            data = [[
+                { "token": "context", "meta": ["content", "concise", "context"], "heat": [0, 0.2] },
+                { "token": " ", "format": True },
+                { "token": "is", "meta": ["are", "that", "is"], "heat": [0.7, 0] }
+            ]]
 
         Arguments:
             data: List[List[TokenData]] - Heatmap data.

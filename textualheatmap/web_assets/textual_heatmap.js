@@ -57,7 +57,8 @@
         constructor(settings, root, facetName) {
             this.settings = settings;
             this.highlightIndex = null;
-            this.data = [];
+            this.nonFormatData = [];
+            this.heatIndexToNodeElement = [];
             this.root = root;
             this.onmouseover = null;
 
@@ -88,7 +89,8 @@
         }
 
         setData(data) {
-            this.data = data;
+            this.nonFormatData = [];
+            this.heatIndexToNodeElement = []
 
             while (this.content.childNodes.length > 0) {
                 this.content.removeChild(this.content.firstChild);
@@ -96,9 +98,13 @@
 
             for (let i = 0; i < data.length; i++) {
                 const tokenNode = document.createElement('span');
+                const heatIndex = this.heatIndexToNodeElement.length;
                 tokenNode.appendChild(document.createTextNode(data[i].token));
-                if (this.settings.interactive) {
-                    tokenNode.addEventListener('mouseover', () => this.onmouseover(i), false);
+                console.log(heatIndex);
+                if (this.settings.interactive && !data[i].format) {
+                    tokenNode.addEventListener('mouseover', () => this.onmouseover(heatIndex), false);
+                    this.heatIndexToNodeElement.push(tokenNode)
+                    this.nonFormatData.push(data[i])
                 }
                 this.content.appendChild(tokenNode);
             }
@@ -111,9 +117,11 @@
         highlight(index) {
             this.highlightIndex = index;
 
-            for (let i = 0; i < this.data.length; i++) {
-                this.content.childNodes[i].style.backgroundColor = viridisSubset(this.data[index].heat[i]);
-                this.content.childNodes[i].classList.toggle('selected', i === index);
+            console.log(index);
+            console.log(this.heatIndexToNodeElement)
+            for (let i = 0; i < this.heatIndexToNodeElement.length; i++) {
+                this.heatIndexToNodeElement[i].style.backgroundColor = viridisSubset(this.nonFormatData[index].heat[i]);
+                this.heatIndexToNodeElement[i].classList.toggle('selected', i === index);
             }
 
             if (this.settings.showMeta) {
@@ -121,14 +129,14 @@
                     this.meta.removeChild(this.meta.firstChild);
                 }
 
-                for (let i = 0; i < this.data[index].meta.length; i++) {
+                for (let i = 0; i < this.nonFormatData[index].meta.length; i++) {
                     const item = document.createElement('div');
                     item.classList.add('meta-content-item');
-                    item.appendChild(document.createTextNode(this.data[index].meta[i]));
+                    item.appendChild(document.createTextNode(this.nonFormatData[index].meta[i]));
                     this.meta.appendChild(item);
                 }
 
-                if (this.data[index].meta.length === 0) {
+                if (this.nonFormatData[index].meta.length === 0) {
                     const item = document.createElement('div');
                     item.classList.add('meta-content-item');
                     this.meta.appendChild(item);

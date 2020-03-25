@@ -59,6 +59,7 @@
   height: 39px;
   background: #F3F3F3;
   border: 1px solid #E0E0E0;
+  color: black;
   border-bottom: none;
   text-overflow: ellipsis;
   overflow: hidden;
