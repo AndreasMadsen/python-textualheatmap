@@ -11,7 +11,16 @@ that and can be used for any kind of textual heatmap purposes.
 `textualheatmap` works with python 3.6 or newer and is distributed under the
 MIT license.
 
-![Gif of textualheatmap](gifs/show_meta.gif)
+![Gif of saliency in RNN models](gifs/show_meta.gif)
+
+An end-to-end example of how to use the
+[HuggingFace 🤗 Transformers](https://github.com/huggingface/transformers) python
+module to create a textual saliency map for how each masked token is predicted.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AndreasMadsen/python-textualheatmap/blob/master/notebooks/huggingface_bert_example.ipynb)
+
+
+![Gif of saliency in BERT models](gifs/huggingface_bert.gif)
 
 ## Install
 
@@ -80,15 +89,16 @@ heatmap.set_data(data)
 heatmap.highlight(159)
 ```
 
-![Gif of learning-curve for keras example](gifs/show_meta.gif)
+![Shows saliency with predicted words at metadata](gifs/show_meta.gif)
 
 ### Example of sequential-charecter model without metadata
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AndreasMadsen/python-textualheatmap/blob/master/notebooks/general_example.ipynb)
 
+When `show_meta` is not `True`, the `meta` part of the `data` object has no effect.
+
 ```python
 heatmap = TextualHeatmap(
-    show_meta = False,
     facet_titles = ['LSTM', 'GRU'],
     rotate_facet_titles = True
 )
@@ -96,7 +106,7 @@ heatmap.set_data(data)
 heatmap.highlight(159)
 ```
 
-![Gif of learning-curve for keras example](gifs/no_meta_and_rotated.gif)
+![Shows saliency without metadata](gifs/no_meta_and_rotated.gif)
 
 ### Example of non-sequential-word model
 
@@ -137,6 +147,8 @@ data = [[
 heatmap = TextualHeatmap(facet_titles = ['BERT'], show_meta=True)
 heatmap.set_data(data)
 ```
+
+![Shows saliency in a BERT model, using sub-word tokenization](gifs/sub_word_tokenized.gif)
 
 ## Citation
 
