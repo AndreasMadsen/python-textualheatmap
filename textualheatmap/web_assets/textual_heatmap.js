@@ -1,6 +1,12 @@
 ;(function () {
     'use strict';
 
+    /**
+     *
+     *
+     * @param {*} ratio: a number between 0 and 1
+     * @return {*} color in hex format
+     */
     function viridisSubset(ratio) {
         const colormap = [
             '#365d8d', '#355e8d', '#355f8d', '#34608d', '#34618d',
@@ -26,6 +32,46 @@
         ];
         const n = colormap.length - 1;
         return colormap[Math.max(0, Math.min(n, Math.floor(ratio * n)))];
+    }
+
+    /**
+     *
+     *
+     * @param {*} ratio: a number between -1 and 0
+     * @return {*} color in hex format
+     */
+    function viridisSubsetNeg(ratio) {
+        const colormap = [
+            "#440154", "#440256", "#450457", "#450559", "#46075a", 
+            "#46085c", "#460a5d", "#460b5e", "#470d60", "#470e61", 
+            "#471063", "#471164", "#471365", "#481467", "#481668", 
+            "#481769", "#48186a", "#481a6c", "#481b6d", "#481c6e", 
+            "#481d6f", "#481f70", "#482071", "#482173", "#482374", 
+            "#482475", "#482576", "#482677", "#482878", "#482979", 
+            "#472a7a", "#472c7a", "#472d7b", "#472e7c", "#472f7d", 
+            "#46307e", "#46327e", "#46337f", "#463480", "#453581", 
+            "#453781", "#453882", "#443983", "#443a83", "#443b84", 
+            "#433d84", "#433e85", "#423f85", "#424086", "#424186", 
+            "#414287", "#414487", "#404588", "#404688", "#3f4788", 
+            "#3f4889", "#3e4989", "#3e4a89", "#3e4c8a", "#3d4d8a", 
+            "#3d4e8a", "#3c4f8a", "#3c508b", "#3b518b", "#3b528b", 
+            "#3a538b", "#3a548c", "#39558c", "#39568c", "#38588c", 
+            "#38598c", "#375a8c", "#375b8d", "#365c8d", "#365d8d"];
+        const n = colormap.length - 1;
+        return colormap[Math.max(0, Math.min(n, Math.floor((ratio + 1) * n)))];
+    }
+
+    /**
+     * 
+     * @param {*} ratio: a number between -1 and 1
+     * @return {*} color in hex format
+     */
+    function color(ratio) {
+        if (ratio < 0) {
+            return viridisSubsetNeg(ratio);
+        } else {
+            return viridisSubset(ratio);
+        }
     }
 
     class TextualHeatmap {
@@ -117,7 +163,7 @@
             this.highlightIndex = index;
 
             for (let i = 0; i < this.heatIndexToNodeElement.length; i++) {
-                this.heatIndexToNodeElement[i].style.backgroundColor = viridisSubset(this.nonFormatData[index].heat[i]);
+                this.heatIndexToNodeElement[i].style.backgroundColor = color(this.nonFormatData[index].heat[i]);
                 this.heatIndexToNodeElement[i].classList.toggle('selected', i === index);
             }
 
